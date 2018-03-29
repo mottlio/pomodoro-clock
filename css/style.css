@@ -1,0 +1,20 @@
+html {
+  font-size: 62.5%; }
+
+.container {
+  margin: 0 auto;
+  width: 50vw;
+  height: 70vh;
+  background-color: grey;
+  display: grid;
+  align-items: center;
+  justify-items: center; }
+
+.screen {
+  background-color: #F7F7F7;
+  padding: 1rem 1rem;
+  width: 70%;
+  height: 50%;
+  font-size: 4rem;
+  display: grid;
+  align-items: center; }
