@@ -136,9 +136,9 @@ body {
   align-items: center; }
 
 .motto__work {
-  position: fixed;
+  position: absolute;
   color: black;
-  top: 7rem;
+  top: -14rem;
   left: 46rem;
   font-family: 'Finger Paint', cursive;
   font-size: 6rem;
@@ -147,9 +147,9 @@ body {
   transition: opacity 5s; }
 
 .motto__break {
-  position: fixed;
+  position: absolute;
   color: white;
-  top: 6rem;
+  top: -15rem;
   left: 46rem;
   font-family: 'Euphoria Script', cursive;
   font-size: 10rem;

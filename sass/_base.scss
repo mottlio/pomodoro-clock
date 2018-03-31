@@ -170,9 +170,9 @@ html{
 
 .motto{
   &__work{
-    position: fixed;
+    position: absolute;
     color: black;
-    top: 7rem;
+    top: -14rem;
     left: 46rem;
     font-family: 'Finger Paint', cursive;
     font-size: 6rem;
@@ -182,9 +182,9 @@ html{
   }
 
   &__break{
-    position: fixed;
+    position: absolute;
     color: white;
-    top: 6rem;
+    top: -15rem;
     left: 46rem;
     font-family: 'Euphoria Script', cursive;
     font-size: 10rem;
