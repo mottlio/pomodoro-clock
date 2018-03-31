@@ -1,20 +1,250 @@
+::selection {
+  background: transparent;
+  /* WebKit/Blink Browsers */ }
+
+::-moz-selection {
+  background: transparent;
+  /* Gecko Browsers */ }
+
 html {
   font-size: 62.5%; }
 
+body {
+  position: relative;
+  background-image: url("https://s3-ap-southeast-1.amazonaws.com/mottlmedia/jeshoots-com-219386-unsplash.jpg");
+  background-size: cover;
+  transition: all 1s; }
+
 .container {
   margin: 0 auto;
-  width: 50vw;
-  height: 70vh;
-  background-color: grey;
+  margin-top: 20rem;
+  border-radius: 10px;
+  width: 63rem;
+  padding: 2rem 2rem;
+  background-color: rgba(206, 206, 206, 0.5);
   display: grid;
   align-items: center;
-  justify-items: center; }
+  justify-items: center;
+  grid-gap: 1rem;
+  grid-template-columns: 2fr 6fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "hourglass screen" "coffee coffeetime"; }
 
-.screen {
-  background-color: #F7F7F7;
+.plus_min, .minus_min, .plus_sec, .minus_sec {
+  font-size: 4rem;
+  font-weight: bold;
+  display: block;
+  cursor: pointer;
+  opacity: 0;
+  transition: all .5s; }
+  .plus_min:active, .minus_min:active, .plus_sec:active, .minus_sec:active {
+    background-color: transparent; }
+
+#min_wor, #sec_wor, #min_br, #sec_br {
+  font-size: 7rem; }
+
+.coffeetime {
   padding: 1rem 1rem;
   width: 70%;
   height: 50%;
-  font-size: 4rem;
-  display: grid;
+  font-size: 3rem;
+  display: flex;
+  color: #5B5129;
+  align-items: center;
+  text-align: center;
+  font-family: 'Fredericka the Great', cursive;
+  grid-area: coffeetime; }
+
+.minutes, .seconds {
+  display: inline-block;
+  margin-right: 1rem;
+  color: #5B5129;
+  font-size: 2rem; }
+
+/*.header{
+    grid-area: header;
+    text-align: center;
+    font-size: 4rem;
+    color: #5B5129;
+    font-family: 'Fredericka the Great', cursive;
+  }*/
+.screen {
+  padding: 1rem 1rem;
+  width: 70%;
+  height: 50%;
+  font-size: 3rem;
+  display: flex;
+  color: #5B5129;
+  align-items: center;
+  grid-area: screen;
+  text-align: center;
+  font-family: 'Fredericka the Great', cursive; }
+
+.clock {
+  position: fixed;
+  top: 6rem;
+  padding: 1rem;
+  left: 3vw;
+  width: 20rem;
+  height: 20rem;
+  background-image: url("https://s3-ap-southeast-1.amazonaws.com/mottlmedia/clock.jpg");
+  background-size: cover;
+  border-radius: 50%;
+  display: flex;
+  align-content: flex-end;
+  justify-content: center;
+  box-shadow: 0 4px 23px black; }
+
+.icon {
+  font-size: 8rem; }
+
+.pointer {
+  width: 7.1rem;
+  height: 10rem;
+  background-image: linear-gradient(to right, red 47%, black 53%);
+  -webkit-clip-path: polygon(50% 0%, 45% 100%, 55% 100%);
+  clip-path: polygon(50% 0%, 45% 100%, 55% 100%);
+  transform: rotate(45deg);
+  transform-origin: bottom;
+  margin-right: -10px; }
+
+.hourglass, .loop, .coffee, .start, .reset, .settings {
+  position: relative;
+  background-image: linear-gradient(to bottom right, #E9ECEF, grey);
+  display: inline-block;
+  font-size: 4.5rem;
+  height: 7.5rem;
+  width: 7.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 10px 16px rgba(0, 0, 0, 0.7);
+  margin-bottom: 2rem;
+  flex-direction: column;
+  overflow: hidden; }
+
+.hourglass, .coffee {
+  font-size: 6rem;
+  height: 10rem;
+  width: 10rem; }
+
+.hourglass {
+  border: 12px solid white; }
+
+.hg {
+  grid-area: hourglass;
+  display: flex;
   align-items: center; }
+
+.break {
+  grid-area: coffee;
+  display: flex;
+  align-items: center; }
+
+.motto__work {
+  position: fixed;
+  color: black;
+  top: 33rem;
+  left: 3rem;
+  font-family: 'Finger Paint', cursive;
+  font-size: 3rem;
+  display: inline-block; }
+
+.motto__break {
+  position: fixed;
+  color: white;
+  top: 33rem;
+  left: 3rem;
+  font-family: 'Euphoria Script', cursive;
+  font-size: 5rem;
+  display: none; }
+
+.menu {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  display: flex;
+  width: 40rem;
+  justify-content: space-around; }
+
+.start {
+  background-image: linear-gradient(to bottom right, #60F291, #33CC66);
+  /*
+  position: absolute;
+  left: 14vw;
+  top: 19rem;
+  z-index: 10;
+  */ }
+
+.label {
+  margin-left: 2rem;
+  font-family: 'Over the Rainbow', cursive;
+  color: #3C2B28;
+  font-size: 3rem; }
+
+.settings:active,
+.start:active,
+.loop:active,
+.reset:active {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+  transform: scale(0.97); }
+
+.fa-retweet {
+  display: inline-block;
+  color: white; }
+
+.fa-pause {
+  display: none;
+  padding: 2rem;
+  color: white;
+  margin-top: 20%; }
+
+.fa-play {
+  display: inline-block;
+  padding: 2rem;
+  color: white;
+  margin-top: 130%;
+  margin-left: 10%; }
+
+/*.reset{
+  position: absolute;
+  top: 2rem;
+  left: 14vw;
+}
+*/
+.fa-cog {
+  color: white; }
+
+.fa-step-backward {
+  padding: 2rem;
+  color: white;
+  margin-top: 130%; }
+
+.fa-fast-backward {
+  padding: 2rem;
+  color: white;
+  margin-top: 20%; }
+
+.fa-hourglass {
+  display: inline-block;
+  background-image: linear-gradient(to top, white, white);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: transform 1s; }
+
+.fa-coffee {
+  display: inline-block;
+  background-image: linear-gradient(to top, #292716 1%, white 1%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: transform 1s; }
+
+.hourglass, .coffee {
+  cursor: pointer; }
+
+.hourglass:active .fa-hourglass {
+  transform: rotate(180deg); }
