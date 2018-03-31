@@ -61,13 +61,6 @@ body {
   color: #5B5129;
   font-size: 2rem; }
 
-/*.header{
-    grid-area: header;
-    text-align: center;
-    font-size: 4rem;
-    color: #5B5129;
-    font-family: 'Fredericka the Great', cursive;
-  }*/
 .screen {
   padding: 1rem 1rem;
   width: 70%;
@@ -108,7 +101,7 @@ body {
   transform-origin: bottom;
   margin-right: -10px; }
 
-.hourglass, .loop, .coffee, .start, .reset, .settings {
+.hourglass, .coffee, .start, .reset, .settings, .undo {
   position: relative;
   background-image: linear-gradient(to bottom right, #E9ECEF, grey);
   display: inline-block;
@@ -145,20 +138,24 @@ body {
 .motto__work {
   position: fixed;
   color: black;
-  top: 33rem;
-  left: 3rem;
+  top: 7rem;
+  left: 46rem;
   font-family: 'Finger Paint', cursive;
-  font-size: 3rem;
-  display: inline-block; }
+  font-size: 6rem;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 5s; }
 
 .motto__break {
   position: fixed;
   color: white;
-  top: 33rem;
-  left: 3rem;
+  top: 6rem;
+  left: 46rem;
   font-family: 'Euphoria Script', cursive;
-  font-size: 5rem;
-  display: none; }
+  font-size: 10rem;
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 5s; }
 
 .menu {
   position: fixed;
@@ -166,17 +163,11 @@ body {
   right: 1rem;
   z-index: 2;
   display: flex;
-  width: 40rem;
+  width: 36rem;
   justify-content: space-around; }
 
 .start {
-  background-image: linear-gradient(to bottom right, #60F291, #33CC66);
-  /*
-  position: absolute;
-  left: 14vw;
-  top: 19rem;
-  z-index: 10;
-  */ }
+  background-image: linear-gradient(to bottom right, #60F291, #33CC66); }
 
 .label {
   margin-left: 2rem;
@@ -186,17 +177,12 @@ body {
 
 .settings:active,
 .start:active,
-.loop:active,
+.undo:active,
 .reset:active {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
   transform: scale(0.97); }
 
-.fa-retweet {
-  display: inline-block;
-  color: white; }
-
 .fa-pause {
-  display: none;
   padding: 2rem;
   color: white;
   margin-top: 20%; }
@@ -208,13 +194,7 @@ body {
   margin-top: 130%;
   margin-left: 10%; }
 
-/*.reset{
-  position: absolute;
-  top: 2rem;
-  left: 14vw;
-}
-*/
-.fa-cog {
+.fa-cog, .fa-undo {
   color: white; }
 
 .fa-step-backward {

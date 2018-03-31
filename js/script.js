@@ -24,6 +24,8 @@ $(document).ready(function() {
     var br = 0;
     var grains = 0;
     var beans = 0;
+    var wav = 'https://s3-ap-southeast-1.amazonaws.com/mottlmedia/Hand-bell-sound.mp3';
+    var audio = new Audio(wav);
 
     clearInterval(work);
     clearInterval(pause);
@@ -39,47 +41,43 @@ $(document).ready(function() {
         
         
         var time_remaining = min_br + " minutes "+sec_br+" seconds ";
-        console.log(time_br);
-        console.log(time_remaining);
 
         
-        //CLOCK
+        //CLOCK 
 
        tilt += 6;
 
        var turn = "rotate("+tilt+"deg)";
-
-       console.log(tilt);
-       console.log(turn);
-
-        $(".pointer").css("transform", turn);
+       $(".pointer").css("transform", turn);
         
         
-        //COFFEE
-
-        
+        //COFFEE CUP 
 
         coffee_bottom -= beans;
 
         var level = "linear-gradient(to top, #292716 "+coffee_bottom+"%,  white 1%)";
         $(".fa-coffee").css("background-image", level); 
 
+        
+        if(time_br <= 4){
+            audio.play();
+            $(".motto__break").css("opacity", "0");
+            
+        } 
+        
         if (time_br <= 0){
             $("#min_br").html(0);
             $("#sec_br").html(0);
             $(".start").trigger("click");
             startWork();
-            
-
         }
 
     };
 
     var startWork = function(){
             br = 0;
-            $(".motto__work").css("display", "inline-block");
-            $(".motto__break").css("display", "none");
-            $(".fa-hourglass").trigger("click");
+            $(".motto__work").css("opacity", "1");
+            $(".fa-hourglass").trigger("click"); 
             $(".minutes").css("color", "#5B5129");
             $(".seconds").css("color", "#5B5129");
             $("body").css("background-image", "url('https://s3-ap-southeast-1.amazonaws.com/mottlmedia/jeshoots-com-219386-unsplash.jpg')");
@@ -91,8 +89,7 @@ $(document).ready(function() {
 
     var startBreak = function(){
             br = 1;
-            $(".motto__work").css("display", "none");
-            $(".motto__break").css("display", "inline-block");
+            $(".motto__break").css("opacity", "1");
             $(".fa-step-backward").trigger("click");
             $(".fa-coffee").trigger("click");
             $(".minutes").css("color", "white");
@@ -102,9 +99,7 @@ $(document).ready(function() {
             $(".hourglass").css("border", "none");
             $(".start").trigger("click");
     }
-    
-    
-    
+       
     var countdown = function(){
 
         time_wor -= 1;
@@ -114,11 +109,12 @@ $(document).ready(function() {
         $("#min_wor").html(min_wor);
         $("#sec_wor").html(sec_wor);
         
+        if(time_wor <= 5){
+            audio.play();
+            $(".motto__work").css("opacity", "0");
+        }
         
-        var time_remaining = min_wor + " minutes "+sec_wor+" seconds ";
-        console.log(time_wor);
-        console.log(time_remaining);
-
+        
         if (time_wor <= 0){
             $("#min_wor").html(0);
             $("#sec_wor").html(0);
@@ -128,33 +124,10 @@ $(document).ready(function() {
 
         }
 
-        var now = new Date().getTime();
-        var diff = now - start;
-        var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        if (hours   < 10) {hours   = "0"+hours;}
-        if (minutes < 10) {minutes = "0"+minutes;}
-        if (seconds < 10) {seconds = "0"+seconds;}
-
-        var time = "Time elapsed: " + hours + ":" + minutes + ":" + seconds; 
-        $(".time").text(time);
-        console.log(time);
-
-
-
-        
-
         //CLOCK
 
        tilt += 6;
-
        var turn = "rotate("+tilt+"deg)";
-
-       console.log(tilt);
-       console.log(turn);
-
         $(".pointer").css("transform", turn);
 
         
@@ -273,9 +246,6 @@ $(document).ready(function() {
        sec_wor = sec_wor_set;
        min_br = min_br_set;
        sec_br = sec_br_set;
-       
-
-       console.log(sec_wor_set);
 
        $("#min_wor").html(min_wor);
        $("#sec_wor").html(sec_wor);
@@ -284,18 +254,14 @@ $(document).ready(function() {
 
    });
 
-/*   $(".fa-fast-backward").click(function(){
-    min_wor = 25;
-    sec_wor = 0;
+   $(".fa-undo").click(function(){
+    location.reload();
+    tilt = 0;
+       var turn = "rotate("+tilt+"deg)";
+       $(".pointer").css("transform", turn);
+    }); 
 
-    $("#min_wor").html(min_wor);
-    $("#sec_wor").html(sec_wor);
 
-}); */
-
-   
-   
-   
 $(".fa-pause").click(function(){
     $(".fa-play").css("margin-top", "130%");
     $(".start").css("background-image", "linear-gradient(to bottom right, #60F291, #33CC66)"); //green gradient
@@ -316,12 +282,10 @@ $(".fa-play").click(function(){
    });   
    
    
-
-
 $(".start").click(function(){
 
     if (br == 1){
-
+        
         time_br = min_br * 60 + sec_br;
         if (stopped == 1){
         beans = 58/time_br;
@@ -338,6 +302,7 @@ $(".start").click(function(){
     } else {
         
         if (stopped == 1){
+        $(".motto__work").css("opacity", "1");
         time_wor = min_wor * 60 + sec_wor;
         grains = 36/time_wor;
         min_wor_set = min_wor;
@@ -353,40 +318,15 @@ $(".start").click(function(){
     
     }
 
-    
-
-
    });
-
-   
-   
-   
    
    $(".fa-step-backward").click(function(){
-    //    $(".fa-step-backward").css("margin-top", "-130%");
-
+    $(".motto__work").css("opacity", "0");
        tilt = 0;
        var turn = "rotate("+tilt+"deg)";
        $(".pointer").css("transform", turn);
 
    });
-
- /*  $(".fa-fast-backward").click(function(){
-    $(".fa-hourglass").trigger("click");
-    $(".fa-step-backward").css("margin-top", "130%");
-
-    tilt = 0;
-    var turn = "rotate("+tilt+"deg)";
-    $(".pointer").css("transform", turn);
-
-    
-});
-
-   */
-   
-   
-   
-   
    
    
    $(".fa-coffee").click(function(){
@@ -400,8 +340,6 @@ $(".start").click(function(){
 
    });
     
-   
-
    $(".fa-hourglass").click(function(){
         rotate += 360;
         var rotation = "rotate("+rotate+"deg)";
@@ -412,6 +350,5 @@ $(".start").click(function(){
         $(".fa-hourglass").css("background-image", sand);
         
     });
-    
     
   });
